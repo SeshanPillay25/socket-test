@@ -1,0 +1,7 @@
+{
+    "name": "socket-test",
+    "description": "Bla bla bla",
+    "repository": "https://github.com/SeshanPillay25/socket-test",
+    "logo": "https://node-js-sample.herokuapp.com/node.png",
+    "keywords": ["node", "express", "static"]
+  }
