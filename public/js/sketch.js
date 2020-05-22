@@ -1,23 +1,19 @@
-// ITP Networked Media, Fall 2014
-// https://github.com/shiffman/itp-networked-media
-// Daniel Shiffman
-
-// Keep track of our socket connection
-var socket;
+let socket;
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(1400, 700);
   background(0);
   // Start a socket connection to the server
-  socket = io.connect('https://socket-test-sesh.herokuapp.com/');
+  socket = io.connect("https://socket-test-sesh.herokuapp.com/");
   // We make a named event called 'mouse' and write an
   // anonymous callback function
-  socket.on('mouse',
+  socket.on(
+    "mouse",
     // When we receive data
-    function(data) {
+    function (data) {
       console.log("Got: " + data.x + " " + data.y);
       // Draw a blue circle
-      fill(0,0,255);
+      fill(0, 0, 255);
       noStroke();
       ellipse(data.x, data.y, 20, 20);
     }
@@ -30,24 +26,24 @@ function draw() {
 
 function mouseDragged() {
   // Draw some white circles
-  fill(255);
+  fill(100);
   noStroke();
-  ellipse(mouseX,mouseY,20,20);
+  ellipse(mouseX, mouseY, 20, 20);
   // Send the mouse coordinates
-  sendmouse(mouseX,mouseY);
+  sendmouse(mouseX, mouseY);
 }
 
 // Function for sending to the socket
 function sendmouse(xpos, ypos) {
   // We are sending!
   console.log("sendmouse: " + xpos + " " + ypos);
-  
+
   // Make a little object with  and y
-  var data = {
+  let data = {
     x: xpos,
-    y: ypos
+    y: ypos,
   };
 
   // Send that object to the socket
-  socket.emit('mouse',data);
+  socket.emit("mouse", data);
 }
